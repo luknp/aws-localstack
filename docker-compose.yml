@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - SERVICES=sns,sqs,s3,dynamodb,cloudformation,cloudwatch,logs,iam,lambda,sts,apigateway,stepfunctions,route53,ecr
+      - DEBUG=1
+      - EDGE_PORT=4566
+      - DATA_DIR=/tmp/localstack/data
+      - HOST_TMP_FOLDER=./.localstack
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    networks:
+      - net1
+    ports:
+      - "4566-4597:4566-4597"
+    volumes:
+      - "${TEMPDIR:-/tmp/localstack}:/temp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+networks:
+  net1:

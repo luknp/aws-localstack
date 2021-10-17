@@ -5,6 +5,7 @@ services:
     image: localstack/localstack:latest
     environment:
       - SERVICES=sns,sqs,s3,dynamodb,cloudformation,cloudwatch,logs,iam,lambda,sts,apigateway,stepfunctions,route53,ecr
+      - AWS_DEFAULT_REGION=eu-central-1
       - DEBUG=1
       - EDGE_PORT=4566
       - DATA_DIR=/tmp/localstack/data
